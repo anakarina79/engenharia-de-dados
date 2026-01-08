@@ -100,7 +100,26 @@ function finalizarJogo() {
   document.getElementById("resultado").style.display = "block";
   document.getElementById("barra").style.width = "100%";
 
-  // Agrupar erros por tema
+  const total = questions.length;
+  const acertou = score;
+  const errou = errosDetalhados.length;
+  const liquido = acertou - errou;
+
+  // impede percentual negativo
+  const percentual = total > 0 ? Math.max(0, Math.round((liquido / total) * 100)) : 0;
+
+  // medalha
+  let medalha = '';
+  if (percentual >= 80) {
+    medalha = '🥇 OURO';
+  } else if (percentual >= 60) {
+    medalha = '🥈 PRATA';
+  } else {
+    medalha = '⚪ Sem medalha';
+  }
+
+  let pontosFracosHTML = "";
+
   const errosPorTema = {};
   errosDetalhados.forEach(e => {
     if (!errosPorTema[e.tema]) {
@@ -108,8 +127,6 @@ function finalizarJogo() {
     }
     errosPorTema[e.tema].push(e);
   });
-
-  let pontosFracosHTML = "";
 
   for (const tema in errosPorTema) {
     pontosFracosHTML += `<h4>${tema}</h4><ul>`;
@@ -127,11 +144,14 @@ function finalizarJogo() {
   document.getElementById("resultado").innerHTML = `
     <h2>Resultado Final</h2>
 
-    <p><strong>Pontuação líquida:</strong> ${score}</p>
-    <p><strong>Acertos:</strong> ${acertos}</p>
-    <p><strong>Erros:</strong> ${erros}</p>
+    <p><strong>Acertos:</strong> ${acertou}</p>
+    <p><strong>Erros:</strong> ${errou}</p>
+    <p><strong>Pontuação líquida:</strong> ${liquido}</p>
+    <p><strong>Percentual líquido:</strong> ${percentual}%</p>
 
-    <h3>Pontos Fracos (revisão direcionada)</h3>
+    <h3>Medalha conquistada: ${medalha}</h3>
+
+    <h3>Pontos Fracos (revisão)</h3>
     ${pontosFracosHTML || "<p>Nenhum ponto fraco identificado 🎉</p>"}
   `;
 }
