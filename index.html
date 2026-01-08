@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Engenharia de Dados – Certo ou Errado (CEBRASPE)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game">
+  <h1>Engenharia de Dados – Certo ou Errado</h1>
+
+  <p id="contador"></p>
+
+  <div class="barra-container">
+    <div id="barra"></div>
+  </div>
+
+  <p id="enunciado"></p>
+
+  <button onclick="responder('C')">✅ CERTO</button>
+  <button onclick="responder('E')">❌ ERRADO</button>
+
+  <div id="feedback"></div>
+
+  <button onclick="proximaQuestao()" class="proxima">
+    Próxima questão ➡️
+  </button>
+</div>
+
+<div id="resultado" style="display:none;"></div>
+
+<script src="questions.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
