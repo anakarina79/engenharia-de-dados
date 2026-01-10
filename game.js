@@ -1,4 +1,4 @@
-const TOTAL_QUESTOES = 30;
+const TOTAL_QUESTOES = 5;
 
 let current = 0;
 let score = 0;
@@ -100,9 +100,9 @@ function finalizarJogo() {
   document.getElementById("resultado").style.display = "block";
   document.getElementById("barra").style.width = "100%";
 
-  const total = questions.length;
-  const acertou = score;
+  const acertou = acertos;
   const errou = errosDetalhados.length;
+  const total = acertou + errou;
   const liquido = acertou - errou;
 
   // impede percentual negativo
