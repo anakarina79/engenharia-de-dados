@@ -1,4 +1,4 @@
-const TOTAL_QUESTOES = 5;
+const TOTAL_QUESTOES = 30;
 
 let current = 0;
 let score = 0;
